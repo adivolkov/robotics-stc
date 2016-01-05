@@ -23,6 +23,7 @@ int main() {
 
 	//const char *outputFile = "newRoboticLabMap.png";
 	//map.saveMapToFile(outputFile);
+	// configure start position
 	Position startPos;
 	startPos.first = 6;
 	startPos.second = 17;
