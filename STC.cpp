@@ -65,7 +65,7 @@ void STC::drawLineOnImage(vector<unsigned char> &image, Position positionA, Posi
 		// horizontal line
 		int start = (pixelPositionA.second < pixelPositionB.second) ? pixelPositionA.second : pixelPositionB.second;
 		int length = abs(pixelPositionA.second - pixelPositionB.second);
-		for (int i = start; i < start+length; i++) {
+		for (int i = start; i <= start+length; i++) {
 			int c = (pixelPositionA.first * mapWidth + i) * 4;
 				image[c] = 255;
 				image[c + 1] = 0;
@@ -76,7 +76,7 @@ void STC::drawLineOnImage(vector<unsigned char> &image, Position positionA, Posi
 		// vertical line
 		int start = (pixelPositionA.first < pixelPositionB.first) ? pixelPositionA.first : pixelPositionB.first;
 		int length = abs(pixelPositionA.first - pixelPositionB.first);
-		for (int i = start; i < start+length; i++) {
+		for (int i = start; i <= start+length; i++) {
 			int c = (i * mapWidth + pixelPositionA.second) * 4;
 				image[c] = 255;
 				image[c + 1] = 0;
