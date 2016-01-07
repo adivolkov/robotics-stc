@@ -12,6 +12,7 @@
 using namespace std;
 
 typedef vector<vector<bool> > Grid;
+typedef pair<int, int> Coordinate;
 
 class Map {
 private:
@@ -34,15 +35,20 @@ private:
 	bool checkIfReducedCellIsOccupied(int i, int j, const Grid &originalGrid, int reduceConstant) const;
 	void inflateCell(int i, int j);
 
+
 public:
 	Map(float mapResolution, float robotSize);
 	void loadMapFromFile(const char* filePath);
 	void saveMapToFile(const char* filePath);
 	void inflateMap();
+	Grid getMapGrid();
 
 	void buildFineGrid();
 	void buildCoarseGrid();
 	Grid getCoarseGrid();
+
+	Coordinate getCoarseGridPixelCoordinate(Coordinate coarsGridCoord);
+
 
 	virtual ~Map();
 };

@@ -24,7 +24,9 @@ private:
 
 	void printGraph();
 	void printDFS();
-	void drawGraph();
+	void drawLineOnImage(vector<unsigned char> &image, Position positionA, Position positionB, int mapWidth);
+	void drawGraphOnImage(vector<unsigned char> &image, int mapWidth);
+	void saveGraphToFile();
 public:
 	STC(Map &map, Position startPos);
 	void buildSpanningTree();

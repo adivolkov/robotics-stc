@@ -16,6 +16,10 @@ Map::Map(float mapResolution, float robotSize) :
 	inflationRadius = 0.25 * robotSizeInCells;
 }
 
+Grid Map::getMapGrid() {
+	return map;
+}
+
 void Map::saveMapToFile(const char* filePath) {
 	/* Example: Color the first 10 rows of the image with red
 	 *
@@ -157,6 +161,14 @@ void Map::buildCoarseGrid() {
 Grid Map::getCoarseGrid() {
 	return coarseGrid;
 }
+
+Coordinate Map::getCoarseGridPixelCoordinate(Coordinate coarseGridCoord) {
+	Coordinate pixelCoord;
+	pixelCoord.first = coarseGridCoord.first * 2 * robotSizeInCells;
+	pixelCoord.second = coarseGridCoord.second * 2 * robotSizeInCells;
+	return pixelCoord;
+}
+
 
 void Map::printGrid(const Grid &grid) const {
 	int rows = grid.size();
