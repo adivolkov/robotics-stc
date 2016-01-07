@@ -24,6 +24,7 @@ private:
 
 	void printGraph();
 	void printDFS();
+	void drawGraph();
 public:
 	STC(Map &map, Position startPos);
 	void buildSpanningTree();
