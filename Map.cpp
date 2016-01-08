@@ -169,6 +169,9 @@ Coordinate Map::getCoarseGridPixelCoordinate(Coordinate coarseGridCoord) {
 	return pixelCoord;
 }
 
+int Map::getCoarseGridPixelWidth() {
+	return robotSizeInCells * 2;
+}
 
 void Map::printGrid(const Grid &grid) const {
 	int rows = grid.size();

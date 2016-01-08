@@ -48,7 +48,7 @@ public:
 	Grid getCoarseGrid();
 
 	Coordinate getCoarseGridPixelCoordinate(Coordinate coarsGridCoord);
-
+	int getCoarseGridPixelWidth();
 
 	virtual ~Map();
 };

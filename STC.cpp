@@ -60,13 +60,15 @@ void STC::printGraph() {
 void STC::drawLineOnImage(vector<unsigned char> &image, Position positionA, Position positionB, int mapWidth) {
 	Position pixelPositionA = map.getCoarseGridPixelCoordinate(positionA);
 	Position pixelPositionB = map.getCoarseGridPixelCoordinate(positionB);
+	int cellWidth = map.getCoarseGridPixelWidth();
 
 	if (positionA.first == positionB.first) {
 		// horizontal line
 		int start = (pixelPositionA.second < pixelPositionB.second) ? pixelPositionA.second : pixelPositionB.second;
+		start += cellWidth / 2; // we want to draw from the middle
 		int length = abs(pixelPositionA.second - pixelPositionB.second);
 		for (int i = start; i <= start+length; i++) {
-			int c = (pixelPositionA.first * mapWidth + i) * 4;
+			int c = ((pixelPositionA.first + cellWidth / 2) * mapWidth + i) * 4;
 				image[c] = 255;
 				image[c + 1] = 0;
 				image[c + 2] = 0;
@@ -75,9 +77,10 @@ void STC::drawLineOnImage(vector<unsigned char> &image, Position positionA, Posi
 	} else {
 		// vertical line
 		int start = (pixelPositionA.first < pixelPositionB.first) ? pixelPositionA.first : pixelPositionB.first;
+		start += cellWidth / 2; // we want to draw from the middle
 		int length = abs(pixelPositionA.first - pixelPositionB.first);
 		for (int i = start; i <= start+length; i++) {
-			int c = (i * mapWidth + pixelPositionA.second) * 4;
+			int c = (i * mapWidth + pixelPositionA.second + cellWidth / 2) * 4;
 				image[c] = 255;
 				image[c + 1] = 0;
 				image[c + 2] = 0;
