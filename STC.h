@@ -18,18 +18,18 @@ class STC {
 private:
 	Map &map;
 	vector<vector<Node *> > graph;
+	Position startPos;
 
-	void buildGraph();
 	void DFS(Node* n);
 
 	void printGraph();
 	void printDFS();
 	void drawLineOnImage(vector<unsigned char> &image, Position positionA, Position positionB, int mapWidth);
-	void drawGraphOnImage(vector<unsigned char> &image, int mapWidth);
-	void saveGraphToFile();
+	void drawSpanningTree(vector<unsigned char> &image, int mapWidth);
 public:
 	STC(Map &map, Position startPos);
 	void buildSpanningTree();
+	void saveSpanningTreeToFile(const char* filePath);
 	virtual ~STC();
 };
 

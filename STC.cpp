@@ -14,15 +14,10 @@
 using namespace std;
 
 STC::STC(Map &map, Position startPos) :
-		map(map) {
-	buildGraph();
-	printGraph();
-	DFS(graph[startPos.first][startPos.second]);
-	printDFS();
-	saveGraphToFile();
+		map(map), startPos(startPos) {
 }
 
-void STC::buildGraph() {
+void STC::buildSpanningTree() {
 	Grid coarseGrid = map.getCoarseGrid();
 	int gridRows = coarseGrid.size();
 	int gridCols = coarseGrid[0].size();
@@ -39,6 +34,7 @@ void STC::buildGraph() {
 			}
 		}
 	}
+	DFS(graph[startPos.first][startPos.second]);
 }
 
 void STC::printGraph() {
@@ -89,7 +85,7 @@ void STC::drawLineOnImage(vector<unsigned char> &image, Position positionA, Posi
 	}
 }
 
-void STC::drawGraphOnImage(vector<unsigned char> &image, int mapWidth) {
+void STC::drawSpanningTree(vector<unsigned char> &image, int mapWidth) {
 	int gridRows = graph.size();
 	int gridCols = graph[0].size();
 
@@ -109,7 +105,7 @@ void STC::drawGraphOnImage(vector<unsigned char> &image, int mapWidth) {
 	}
 }
 
-void STC::saveGraphToFile() {
+void STC::saveSpanningTreeToFile(const char* filePath) {
 	Grid mapGrid = map.getMapGrid();
 	vector<unsigned char> image;
 
@@ -136,8 +132,8 @@ void STC::saveGraphToFile() {
 		}
 	}
 
-	drawGraphOnImage(image, mapWidth);
-	lodepng::encode("map_with_graph.png", image, mapWidth, mapHeight);
+	drawSpanningTree(image, mapWidth);
+	lodepng::encode(filePath, image, mapWidth, mapHeight);
 }
 
 void STC::printDFS() {

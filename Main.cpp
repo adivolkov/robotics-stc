@@ -29,6 +29,8 @@ int main() {
 	startPos.second = 17;
 
 	STC stc(map, startPos);
+	stc.buildSpanningTree();
+	stc.saveSpanningTreeToFile("roboticLabMap_spanningTree.png");
 
 	return 0;
 }
