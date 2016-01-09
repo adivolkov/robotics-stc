@@ -8,11 +8,11 @@
 #ifndef MAP_H_
 #define MAP_H_
 
+
 #include <vector>
+#include "Types.h"
 using namespace std;
 
-typedef vector<vector<bool> > Grid;
-typedef pair<int, int> Coordinate;
 
 class Map {
 private:
@@ -47,7 +47,8 @@ public:
 	void buildCoarseGrid();
 	Grid getCoarseGrid();
 
-	Coordinate getCoarseGridPixelCoordinate(Coordinate coarsGridCoord);
+	Coordinate coarseToPixelCoordinate(Coordinate coarsGridCoord);
+	Coordinate pixelToCoarseCoordinate(Coordinate pixelCoord);
 	int getCoarseGridPixelWidth();
 
 	virtual ~Map();

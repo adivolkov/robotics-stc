@@ -1,4 +1,4 @@
-map: ~/Desktop/roboticLabMap.png
-startLocation: 362 305 20
+map: roboticLabMap.png
+startLocation: 144 408 20
 robotSize: 30 30
 MapResolutionCM: 2.5

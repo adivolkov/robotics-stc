@@ -7,27 +7,38 @@
 
 #include "Map.h"
 #include "STC.h"
+#include "ConfigurationManager.h"
+#include <iostream>
+
+using namespace std;
 
 int main() {
-	float mapResolution = 0.025;
-	float robotSize = 0.3;
+
+	ConfigurationManager config("parameters.txt");
+	RobotPosition initRobotPosition = config.getInitialRobotPosition();
+
+	cout << "map path: " << config.getMapPath() << endl;
+	cout << "initial robot position: (" << initRobotPosition.getX() << "," << initRobotPosition.getY() << "," << initRobotPosition.getYaw() << ")" << endl;
+	cout << "robot size: " << config.getRobotSizeCM() << endl;
+	cout << "map resolution: " << config.getMapResolutionCM() << endl;
+
+	float mapResolution = config.getMapResolutionCM() / 100;
+	float robotSize = config.getRobotSizeCM() / 100;
 	Map map(mapResolution, robotSize);
 
-	const char *filePath = "roboticLabMap.png";
-	map.loadMapFromFile(filePath);
+	map.loadMapFromFile(config.getMapPath().c_str());
 
 	map.inflateMap();
 
 	map.buildFineGrid();
 	map.buildCoarseGrid();
 
-	//const char *outputFile = "newRoboticLabMap.png";
-	//map.saveMapToFile(outputFile);
 	// configure start position
-	Position startPos;
-	startPos.first = 6;
-	startPos.second = 17;
 
+	Coordinate pixelCoord(initRobotPosition.getX(), initRobotPosition.getY());
+	// translate to coarse grid
+	Position startPos = map.pixelToCoarseCoordinate(pixelCoord);
+	cout << "start pos in coarse: (" << startPos.first << "," << startPos.second << ")" << endl;
 	STC stc(map, startPos);
 	stc.buildSpanningTree();
 	stc.saveSpanningTreeToFile("roboticLabMap_spanningTree.png");

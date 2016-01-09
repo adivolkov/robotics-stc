@@ -9,9 +9,10 @@
 #define NODE_H_
 
 #include <vector>
+#include "Types.h"
 using namespace std;
 
-typedef pair<int, int> Position;
+
 
 class Node {
 private:

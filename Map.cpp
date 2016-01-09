@@ -162,11 +162,18 @@ Grid Map::getCoarseGrid() {
 	return coarseGrid;
 }
 
-Coordinate Map::getCoarseGridPixelCoordinate(Coordinate coarseGridCoord) {
+Coordinate Map::coarseToPixelCoordinate(Coordinate coarseGridCoord) {
 	Coordinate pixelCoord;
 	pixelCoord.first = coarseGridCoord.first * 2 * robotSizeInCells;
 	pixelCoord.second = coarseGridCoord.second * 2 * robotSizeInCells;
 	return pixelCoord;
+}
+
+Coordinate Map::pixelToCoarseCoordinate(Coordinate pixelCoord) {
+	Coordinate coarseCoord;
+	coarseCoord.first = pixelCoord.first / 2.0 / robotSizeInCells;
+	coarseCoord.second = pixelCoord.second / 2.0 / robotSizeInCells;
+	return coarseCoord;
 }
 
 int Map::getCoarseGridPixelWidth() {

@@ -54,8 +54,8 @@ void STC::printGraph() {
 }
 
 void STC::drawLineOnImage(vector<unsigned char> &image, Position positionA, Position positionB, int mapWidth) {
-	Position pixelPositionA = map.getCoarseGridPixelCoordinate(positionA);
-	Position pixelPositionB = map.getCoarseGridPixelCoordinate(positionB);
+	Position pixelPositionA = map.coarseToPixelCoordinate(positionA);
+	Position pixelPositionB = map.coarseToPixelCoordinate(positionB);
 	int cellWidth = map.getCoarseGridPixelWidth();
 
 	if (positionA.first == positionB.first) {
