@@ -12,6 +12,10 @@
 
 using namespace std;
 
+void printCoordinate(Coordinate coord) {
+	cout << "(" << coord.first << "," << coord.second << ")" << endl;
+}
+
 int main() {
 
 	ConfigurationManager config("parameters.txt");
@@ -36,14 +40,18 @@ int main() {
 	// configure start position
 
 	Coordinate pixelCoord(initRobotPosition.getX(), initRobotPosition.getY());
+	printCoordinate(pixelCoord);
 	// translate to coarse grid
 	Position startPos = map.pixelToCoarseCoordinate(pixelCoord);
-	cout << "start pos in coarse: (" << startPos.first << "," << startPos.second << ")" << endl;
+	printCoordinate(startPos);
+	printCoordinate(map.coarseToPixelCoordinate(startPos));
 	STC stc(map, startPos);
 	stc.buildSpanningTree();
+	stc.printGraph();
 	stc.saveSpanningTreeToFile("roboticLabMap_spanningTree.png");
 
 	return 0;
 }
+
 
 

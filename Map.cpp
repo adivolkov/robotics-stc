@@ -171,8 +171,8 @@ Coordinate Map::coarseToPixelCoordinate(Coordinate coarseGridCoord) {
 
 Coordinate Map::pixelToCoarseCoordinate(Coordinate pixelCoord) {
 	Coordinate coarseCoord;
-	coarseCoord.first = pixelCoord.first / 2.0 / robotSizeInCells;
-	coarseCoord.second = pixelCoord.second / 2.0 / robotSizeInCells;
+	coarseCoord.first = pixelCoord.first / robotSizeInCells / 2;
+	coarseCoord.second = pixelCoord.second / robotSizeInCells / 2;
 	return coarseCoord;
 }
 
