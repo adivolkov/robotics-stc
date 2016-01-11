@@ -31,7 +31,7 @@ ConfigurationManager::ConfigurationManager(const char* filePath): initialRobotPo
 	string initXStr, initYStr, initYawStr;
 	getline(confFile, line);
 	istringstream initPositionStream(line);
-	initPositionStream >> parameterName >> initXStr >> initYStr >> initYawStr;
+	initPositionStream >> parameterName >> initYStr >> initXStr >> initYawStr;
 	int initX = atoi(initXStr.c_str());
 	int initY = atoi(initYStr.c_str());
 	int initYaw = atoi(initYawStr.c_str());
