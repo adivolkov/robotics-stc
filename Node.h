@@ -15,13 +15,11 @@ using namespace std;
 
 
 class Node {
-private:
-	int row, col;
-
-
 public:
+	int row, col;
 	bool visited;
 	vector<Node *> neighborsInSpanningTree;
+	vector<bool> edges;
 
 	Node(int row, int col);
 	virtual ~Node();

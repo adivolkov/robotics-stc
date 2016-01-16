@@ -49,6 +49,8 @@ int main() {
 	stc.buildSpanningTree();
 	stc.printGraph();
 	stc.saveSpanningTreeToFile("roboticLabMap_spanningTree.png");
+	vector<Position> path = stc.path();
+	stc.savePathToFile(path, "roboticLabMap_path.png");
 
 	return 0;
 }
