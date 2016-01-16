@@ -49,7 +49,9 @@ public:
 
 	Coordinate coarseToPixelCoordinate(Coordinate coarsGridCoord);
 	Coordinate pixelToCoarseCoordinate(Coordinate pixelCoord);
+	Coordinate fineToPixelCoordinate(Coordinate fineGridCoord);
 	int getCoarseGridPixelWidth();
+	int getFineGridPixelWidth();
 
 	virtual ~Map();
 };

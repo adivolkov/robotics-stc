@@ -23,12 +23,16 @@ private:
 	void DFS(Node* n);
 	void drawLineOnImage(vector<unsigned char> &image, Position positionA, Position positionB, int mapWidth);
 	void drawSpanningTree(vector<unsigned char> &image, int mapWidth);
+	Position fineGridCoordinate(Position coarseGridCoord, int corner);
+	void fillPath(vector<Position> &path, Node *coarseGridNode, Position fineGridCoord, int corner, Position initialFineGridPosition);
 public:
 	STC(Map &map, Position startPos);
 	void printGraph();
 	void printDFS();
 	void buildSpanningTree();
+	vector<Position> path();
 	void saveSpanningTreeToFile(const char* filePath);
+	void savePathToFile(vector<Position> path, const char* filePath);
 	virtual ~STC();
 };
 

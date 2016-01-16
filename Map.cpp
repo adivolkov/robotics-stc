@@ -176,8 +176,19 @@ Coordinate Map::pixelToCoarseCoordinate(Coordinate pixelCoord) {
 	return coarseCoord;
 }
 
+Coordinate Map::fineToPixelCoordinate(Coordinate fineGridCoord) {
+	Coordinate pixelCoord;
+	pixelCoord.first = fineGridCoord.first * robotSizeInCells;
+	pixelCoord.second = fineGridCoord.second * robotSizeInCells;
+	return pixelCoord;
+}
+
 int Map::getCoarseGridPixelWidth() {
 	return robotSizeInCells * 2;
+}
+
+int Map::getFineGridPixelWidth() {
+	return robotSizeInCells;
 }
 
 void Map::printGrid(const Grid &grid) const {
