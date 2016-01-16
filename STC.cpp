@@ -56,15 +56,13 @@ void STC::printGraph() {
 void STC::drawLineOnImage(vector<unsigned char> &image, Position positionA, Position positionB, int mapWidth) {
 	Position pixelPositionA = map.coarseToPixelCoordinate(positionA);
 	Position pixelPositionB = map.coarseToPixelCoordinate(positionB);
-	int cellWidth = map.getCoarseGridPixelWidth();
 
 	if (positionA.first == positionB.first) {
 		// horizontal line
 		int start = (pixelPositionA.second < pixelPositionB.second) ? pixelPositionA.second : pixelPositionB.second;
-		start += cellWidth / 2; // we want to draw from the middle
 		int length = abs(pixelPositionA.second - pixelPositionB.second);
 		for (int i = start; i <= start+length; i++) {
-			int c = ((pixelPositionA.first + cellWidth / 2) * mapWidth + i) * 4;
+			int c = (pixelPositionA.first * mapWidth + i) * 4;
 			image[c] = 255;
 			image[c + 1] = 0;
 			image[c + 2] = 0;
@@ -73,10 +71,9 @@ void STC::drawLineOnImage(vector<unsigned char> &image, Position positionA, Posi
 	} else {
 		// vertical line
 		int start = (pixelPositionA.first < pixelPositionB.first) ? pixelPositionA.first : pixelPositionB.first;
-		start += cellWidth / 2; // we want to draw from the middle
 		int length = abs(pixelPositionA.first - pixelPositionB.first);
 		for (int i = start; i <= start+length; i++) {
-			int c = (i * mapWidth + pixelPositionA.second + cellWidth / 2) * 4;
+			int c = (i * mapWidth + pixelPositionA.second) * 4;
 			image[c] = 255;
 			image[c + 1] = 0;
 			image[c + 2] = 0;
@@ -474,19 +471,16 @@ void STC::savePathToFile(vector<Position> path, const char* filePath) {
 
 		}
 	}
-	int cellWidth = map.getFineGridPixelWidth();
-
 	drawSpanningTree(image, mapWidth);
 	for (int i=0;i<path.size();i++) {
 		Coordinate pixelCoord = map.fineToPixelCoordinate(path[i]);
-		int c = ((pixelCoord.first + cellWidth / 2) * mapWidth + (pixelCoord.second + cellWidth / 2)) * 4;
+		int c = (pixelCoord.first * mapWidth + pixelCoord.second) * 4;
 		image[c] = 0;
 		image[c + 1] = 0;
 		image[c + 2] = 255;
 		image[c + 3] = 255;
 	}
 	lodepng::encode(filePath, image, mapWidth, mapHeight);
-
 }
 
 
