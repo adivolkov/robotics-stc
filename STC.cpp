@@ -225,7 +225,7 @@ vector<Position> STC::path() {
 	int initialCorner = (initialDirection + 2) % 4;
 	Position initialFineGridPosition = fineGridCoordinate(startPos, initialCorner);
 	path.resize(path.size()+1);
-	path[0] = initialFineGridPosition;
+	path[0] = map.fineToPixelCoordinate(initialFineGridPosition);
 	fillPath(path, startNode, initialFineGridPosition, initialCorner, initialFineGridPosition);
 	return path;
 }
@@ -277,8 +277,8 @@ void STC::fillPath(vector<Position> &path, Node *coarseGridNode, Position fineGr
 			nextNode = graph[coarseGridNode->row-1][coarseGridNode->col];
 			break;
 		}
-		path[path.size()-2] = firstStep;
-		path[path.size()-1] = secondStep;
+		path[path.size()-2] = map.fineToPixelCoordinate(firstStep);
+		path[path.size()-1] = map.fineToPixelCoordinate(secondStep);
 		fillPath(path, nextNode, secondStep, nextCorner, initialFineGridPosition);
 		return;
 	}
@@ -315,7 +315,7 @@ void STC::fillPath(vector<Position> &path, Node *coarseGridNode, Position fineGr
 			nextNode = graph[coarseGridNode->row][coarseGridNode->col+1];
 			break;
 		}
-		path[path.size()-1] = firstStep;
+		path[path.size()-1] = map.fineToPixelCoordinate(firstStep);
 		fillPath(path, nextNode, firstStep, nextCorner, initialFineGridPosition);
 		return;
 	}
@@ -370,9 +370,9 @@ void STC::fillPath(vector<Position> &path, Node *coarseGridNode, Position fineGr
 			nextNode = graph[coarseGridNode->row][coarseGridNode->col-1];
 			break;
 		}
-		path[path.size()-3] = firstStep;
-		path[path.size()-2] = secondStep;
-		path[path.size()-1] = thirdStep;
+		path[path.size()-3] = map.fineToPixelCoordinate(firstStep);
+		path[path.size()-2] = map.fineToPixelCoordinate(secondStep);
+		path[path.size()-1] = map.fineToPixelCoordinate(thirdStep);
 		fillPath(path, nextNode, thirdStep, nextCorner, initialFineGridPosition);
 		return;
 	}
@@ -436,10 +436,10 @@ void STC::fillPath(vector<Position> &path, Node *coarseGridNode, Position fineGr
 			nextNode = graph[coarseGridNode->row+1][coarseGridNode->col];
 			break;
 		}
-		path[path.size()-4] = firstStep;
-		path[path.size()-3] = secondStep;
-		path[path.size()-2] = thirdStep;
-		path[path.size()-1] = fourthStep;
+		path[path.size()-4] = map.fineToPixelCoordinate(firstStep);
+		path[path.size()-3] = map.fineToPixelCoordinate(secondStep);
+		path[path.size()-2] = map.fineToPixelCoordinate(thirdStep);
+		path[path.size()-1] = map.fineToPixelCoordinate(fourthStep);
 		fillPath(path, nextNode, fourthStep, nextCorner, initialFineGridPosition);
 		return;
 	}
@@ -473,7 +473,7 @@ void STC::savePathToFile(vector<Position> path, const char* filePath) {
 	}
 	drawSpanningTree(image, mapWidth);
 	for (int i=0;i<path.size();i++) {
-		Coordinate pixelCoord = map.fineToPixelCoordinate(path[i]);
+		Coordinate pixelCoord = path[i];
 		int c = (pixelCoord.first * mapWidth + pixelCoord.second) * 4;
 		image[c] = 0;
 		image[c + 1] = 0;
