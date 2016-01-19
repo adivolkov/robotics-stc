@@ -12,7 +12,7 @@ using namespace std;
 
 WayPointManager::WayPointManager(vector<Position> &path) : path(path) {}
 
-void WayPointManager::findWaypoints(){
+vector<Position> WayPointManager::getWaypoints(){
 
 	int dx, dy, waypointsCounter = 0;
 	bool isXAxis = true;
@@ -57,7 +57,7 @@ void WayPointManager::findWaypoints(){
 	waypoints.resize(waypointsCounter);
 	this->waypoints = waypoints;
 	// printWaypoints(); // uncomment to print the waypoints
-
+	return waypoints;
 }
 
 void WayPointManager::printWaypoints(){
@@ -65,10 +65,6 @@ void WayPointManager::printWaypoints(){
 	{
 		cout << i << ": " << "(" << waypoints[i].first << "," << waypoints[i].second << ")" << endl;
 	}
-}
-
-vector<Position> WayPointManager::getWaypoints(){
-	return this->waypoints;
 }
 
 WayPointManager::~WayPointManager() {}
