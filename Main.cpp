@@ -7,6 +7,7 @@
 
 #include "Map.h"
 #include "STC.h"
+#include "WaypointManager.h"
 #include "ConfigurationManager.h"
 #include <iostream>
 
@@ -50,7 +51,9 @@ int main() {
 	stc.printGraph();
 	stc.saveSpanningTreeToFile("roboticLabMap_spanningTree.png");
 	vector<Position> path = stc.path();
-	stc.savePathToFile(path, "roboticLabMap_path.png");
+	WaypointManager wpm(path);
+	vector<Position> waypoints = wpm.getWaypoints();
+	stc.savePathToFile(waypoints, "roboticLabMap_path.png");
 
 	return 0;
 }

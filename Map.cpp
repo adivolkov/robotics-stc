@@ -10,7 +10,7 @@
 #include <iostream>
 
 Map::Map(float mapResolution, float robotSize) :
-	mapResolution(mapResolution), robotSize(robotSize) {
+mapResolution(mapResolution), robotSize(robotSize) {
 
 	robotSizeInCells = robotSize / mapResolution;
 	inflationRadius = 0.25 * robotSizeInCells;
@@ -33,19 +33,19 @@ void Map::saveMapToFile(const char* filePath) {
 	}*/
 
 	for (int i = 0; i < mapHeight; i++) {
-			for (int j = 0; j < mapWidth; j++) {
-				int c = (i * mapWidth + j) * 4;
-				if (map[i][j]) {
-					image[c] = 0;
-					image[c + 1] = 0;
-					image[c + 2] = 0;
-				} else {
-					image[c] = 255;
-					image[c + 1] = 255;
-					image[c + 2] = 255;
-				}
-
+		for (int j = 0; j < mapWidth; j++) {
+			int c = (i * mapWidth + j) * 4;
+			if (map[i][j]) {
+				image[c] = 0;
+				image[c + 1] = 0;
+				image[c + 2] = 0;
+			} else {
+				image[c] = 255;
+				image[c + 1] = 255;
+				image[c + 2] = 255;
 			}
+
+		}
 	}
 
 	lodepng::encode(filePath, image, mapWidth, mapHeight);
