@@ -1,25 +1,38 @@
 /*
- * WayPointManager.cpp
+ * WaypointManager.cpp
  *
  *  Created on: Jan 18, 2016
  *      Author: colman
  */
 
-#include "WayPointManager.h"
+#include "WaypointManager.h"
 #include <iostream>
 
 using namespace std;
 
-WayPointManager::WayPointManager(vector<Position> &path) : path(path) {}
+WaypointManager::WaypointManager(vector<Position> &path) : path(path) {
+	this->waypoints = path;
+	printWaypoints();
+}
 
-vector<Position> WayPointManager::getWaypoints(){
+vector<Position> WaypointManager::getWaypoints(){
 
 	int dx, dy, waypointsCounter = 0;
-	bool isXAxis = true;
+	bool isXAxis;
 	vector<Position> waypoints;
 	waypoints.resize(path.size());
 
-	for (unsigned int i = 0; i < path.size()-1; ++i)
+	// handle first node is a waypoint exception
+	if (path.size() >= 2)
+	{
+		dx = path[0].first - path[1].first;
+		dy = path[0].second - path[1].second;
+		isXAxis = (dx == 0) ? false : true;
+		waypoints[0] = path[0];
+		waypointsCounter += 1;
+	}
+
+	for (unsigned int i = 1; i < path.size()-1; ++i)
 	{
 		// check movement
 		dx = path[i].first - path[i+1].first;
@@ -60,14 +73,14 @@ vector<Position> WayPointManager::getWaypoints(){
 	return waypoints;
 }
 
-void WayPointManager::printWaypoints(){
+void WaypointManager::printWaypoints(){
 	for (unsigned int i = 0; i < this->waypoints.size()-1; ++i)
 	{
 		cout << i << ": " << "(" << waypoints[i].first << "," << waypoints[i].second << ")" << endl;
 	}
 }
 
-WayPointManager::~WayPointManager() {}
+WaypointManager::~WaypointManager() {}
 
 
 

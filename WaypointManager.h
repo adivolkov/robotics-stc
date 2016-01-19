@@ -1,5 +1,5 @@
 /*
- * WayPointManager.h
+ * WaypointManager.h
  *
  *  Created on: Jan 18, 2016
  *      Author: colman
@@ -12,17 +12,17 @@
 #include "Types.h"
 using namespace std;
 
-class WayPointManager {
+class WaypointManager {
 public:
 	vector<Position> path;
 	vector<Position> waypoints;
-	WayPointManager(vector<Position> &path);
+	WaypointManager(vector<Position> &path);
 
 	vector<Position> getWaypoints();
 
 	void printWaypoints();
 
-	virtual ~WayPointManager();
+	virtual ~WaypointManager();
 };
 
 #endif /* WAYPOINTMANAGER_H_ */
