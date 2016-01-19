@@ -10,55 +10,53 @@
 
 using namespace std;
 
-WayPointManager::WayPointManager(vector<Position> &path) {
-	this->path = path;
-}
+WayPointManager::WayPointManager(vector<Position> &path) : path(path) {}
 
-vector<Position> WayPointManager::findWaypoints(vector<Position> &path){
-	int dx, dy, j = 0;
-		string last_axis = "";
-		vector<Position> waypoints;
-		waypoints.resize(path.size());
+void WayPointManager::findWaypoints(){
 
-		for (unsigned int i = 0; i < path.size()-1; ++i)
+	int dx, dy, waypointsCounter = 0;
+	bool isXAxis = true;
+	vector<Position> waypoints;
+	waypoints.resize(path.size());
+
+	for (unsigned int i = 0; i < path.size()-1; ++i)
+	{
+		// check movement
+		dx = path[i].first - path[i+1].first;
+		dy = path[i].second - path[i+1].second;
+
+		if (dx == 0)
 		{
-			// check movement
-			dx = path[i].first - path[i+1].first;
-			dy = path[i].second - path[i+1].second;
 
-			if (dx == 0)
+			// movement was detected in "second" axis.
+
+			// check if axis was changed, and add waypoint to the path
+			if (isXAxis)
 			{
-
-				// movement was detected in "second" axis.
-
-				// check if axis was changed, and add waypoint to the path
-				if (last_axis == "second")
-				{
-					waypoints[j] = path[i];
-					j += 1;
-				}
-
-				last_axis = "first";
+				waypoints[waypointsCounter] = path[i];
+				waypointsCounter += 1;
 			}
-			else if (dy == 0)
-			{
-				// movement was detected in "first" axis.
 
-				// check if axis was changed, and add waypoint to the path
-				if (last_axis == "first")
-				{
-					waypoints[j] = path[i];
-					j += 1;
-				}
-
-				last_axis = "second";
-			}
+			isXAxis = false;
 		}
+		else if (dy == 0)
+		{
+			// movement was detected in "first" axis.
 
-		waypoints.resize(j);
-		this->waypoints = waypoints;
-		// printWaypoints(); // uncomment to print the waypoints
-		return waypoints;
+			// check if axis was changed, and add waypoint to the path
+			if (!isXAxis)
+			{
+				waypoints[waypointsCounter] = path[i];
+				waypointsCounter += 1;
+			}
+
+			isXAxis = true;
+		}
+	}
+
+	waypoints.resize(waypointsCounter);
+	this->waypoints = waypoints;
+	// printWaypoints(); // uncomment to print the waypoints
 
 }
 
@@ -73,9 +71,7 @@ vector<Position> WayPointManager::getWaypoints(){
 	return this->waypoints;
 }
 
-WayPointManager::~WayPointManager() {
-	// TODO Auto-generated destructor stub
-}
+WayPointManager::~WayPointManager() {}
 
 
 

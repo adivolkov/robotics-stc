@@ -52,8 +52,8 @@ int main() {
 	stc.saveSpanningTreeToFile("roboticLabMap_spanningTree.png");
 	vector<Position> path = stc.path();
 	WayPointManager wpm(path);
-
-	vector<Position> waypoints = wpm.findWaypoints(path);
+	wpm.findWaypoints();
+	vector<Position> waypoints = wpm.getWaypoints();
 	stc.savePathToFile(waypoints, "roboticLabMap_path.png");
 
 	return 0;

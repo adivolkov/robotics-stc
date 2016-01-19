@@ -18,7 +18,7 @@ public:
 	vector<Position> waypoints;
 	WayPointManager(vector<Position> &path);
 
-	vector<Position> findWaypoints(vector<Position> &path);
+	void findWaypoints();
 
 	void printWaypoints();
 	vector<Position> getWaypoints();
