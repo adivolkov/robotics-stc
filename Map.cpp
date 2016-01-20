@@ -183,6 +183,20 @@ Coordinate Map::fineToPixelCoordinate(Coordinate fineGridCoord) {
 	return pixelCoord;
 }
 
+RealPosition Map::pixelToRobotPosition(Coordinate pixelCoord){
+	RealPosition robotPosition;
+	robotPosition.first = (pixelCoord.first - 0.5 * mapHeight) * mapResolution * -1;
+	robotPosition.second = (pixelCoord.second - 0.5 * mapWidth) * mapResolution;
+	return robotPosition;
+}
+
+Coordinate Map::robotPositionToPixel(RealPosition realPosition){
+	Coordinate pixelCoord;
+	pixelCoord.first = (realPosition.first * -1 / mapResolution) + 0.5 * mapHeight;
+	pixelCoord.second = (realPosition.second / mapResolution) + 0.5 * mapWidth;
+	return pixelCoord;
+}
+
 int Map::getCoarseGridPixelWidth() {
 	return robotSizeInCells * 2;
 }

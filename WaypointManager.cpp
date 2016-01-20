@@ -10,16 +10,17 @@
 
 using namespace std;
 
-WaypointManager::WaypointManager(vector<Position> &path) : path(path) {
+WaypointManager::WaypointManager(vector<RealPosition> &path) : path(path) {
 	this->waypoints = path;
 	printWaypoints();
 }
 
-vector<Position> WaypointManager::getWaypoints(){
+vector<RealPosition> WaypointManager::getWaypoints(){
 
-	int dx, dy, waypointsCounter = 0;
+	double dx, dy;
+	int waypointsCounter = 0;
 	bool isXAxis;
-	vector<Position> waypoints;
+	vector<RealPosition> waypoints;
 	waypoints.resize(path.size());
 
 	// handle first node is a waypoint exception
@@ -69,14 +70,16 @@ vector<Position> WaypointManager::getWaypoints(){
 
 	waypoints.resize(waypointsCounter);
 	this->waypoints = waypoints;
-	// printWaypoints(); // uncomment to print the waypoints
+	//printWaypoints(); // uncomment to print the waypoints
 	return waypoints;
 }
 
 void WaypointManager::printWaypoints(){
+	cout << endl << endl << endl;
 	for (unsigned int i = 0; i < this->waypoints.size()-1; ++i)
 	{
 		cout << i << ": " << "(" << waypoints[i].first << "," << waypoints[i].second << ")" << endl;
+		//cout << "puck( pose [" << waypoints[i].second << " " << waypoints[i].first << " 0 ] color \"red\" )" << endl;
 	}
 }
 

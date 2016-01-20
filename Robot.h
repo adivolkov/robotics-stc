@@ -20,7 +20,7 @@ private:
 	LaserProxy *lp;
 
 public:
-	Robot(string ip, int port);
+	Robot(string ip, int port, double x, double y, double yaw);
 	void setSpeed(double linearSpeed, double angularSpeed);
 	double getXPos();
 	double getYPos();

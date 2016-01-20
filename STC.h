@@ -31,8 +31,9 @@ public:
 	void printDFS();
 	void buildSpanningTree();
 	vector<Position> path();
+	vector<RealPosition> realPath();
 	void saveSpanningTreeToFile(const char* filePath);
-	void savePathToFile(vector<Position> path, const char* filePath);
+	void saveRealPathToFile(vector<RealPosition> path, const char* filePath);
 	virtual ~STC();
 };
 
