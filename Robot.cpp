@@ -7,11 +7,14 @@
 
 #include "Robot.h"
 
-Robot::Robot(string ip, int port) {
+Robot::Robot(string ip, int port, double x, double y, double yaw) {
 	pc = new PlayerClient(ip, port);
 	pp = new Position2dProxy(pc);
 	lp = new LaserProxy(pc);
-
+	pp->SetOdometry(x,y,yaw);
+	for (int i = 0; i<20; i++){
+		read();
+	}
 }
 
 void Robot::setSpeed(double linearSpeed, double angularSpeed){

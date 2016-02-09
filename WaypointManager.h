@@ -14,11 +14,11 @@ using namespace std;
 
 class WaypointManager {
 public:
-	vector<Position> path;
-	vector<Position> waypoints;
-	WaypointManager(vector<Position> &path);
+	vector<RealPosition> path;
+	vector<RealPosition> waypoints;
+	WaypointManager(vector<RealPosition> &path);
 
-	vector<Position> getWaypoints();
+	vector<RealPosition> getWaypoints();
 
 	void printWaypoints();
 

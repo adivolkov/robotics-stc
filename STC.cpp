@@ -230,9 +230,21 @@ vector<Position> STC::path() {
 	return path;
 }
 
+vector<RealPosition> STC::realPath(){
+	vector<Position> pixelPath = path();
+	vector<RealPosition> realPath;
+	realPath.resize(pixelPath.size());
+	for (int i = 0; i < pixelPath.size(); ++i) {
+		realPath[i] = map.pixelToRobotPosition(pixelPath[i]);
+	}
+
+	return realPath;
+}
 void STC::fillPath(vector<Position> &path, Node *coarseGridNode, Position fineGridCoord, int corner, Position initialFineGridPosition) {
 	if (fineGridCoord ==  initialFineGridPosition && path.size() > 1) {
 		// we've reached the end of our path
+		path.resize(path.size() + 1);
+		path[path.size() - 1] = fineGridCoord;
 		return;
 	}
 	vector<bool> edges = coarseGridNode->edges;
@@ -445,7 +457,7 @@ void STC::fillPath(vector<Position> &path, Node *coarseGridNode, Position fineGr
 	}
 }
 
-void STC::savePathToFile(vector<Position> path, const char* filePath) {
+void STC::saveRealPathToFile(vector<RealPosition> path, const char* filePath) {
 	Grid mapGrid = map.getMapGrid();
 	vector<unsigned char> image;
 
@@ -473,7 +485,7 @@ void STC::savePathToFile(vector<Position> path, const char* filePath) {
 	}
 	drawSpanningTree(image, mapWidth);
 	for (int i=0;i<path.size();i++) {
-		Coordinate pixelCoord = path[i];
+		Coordinate pixelCoord = map.robotPositionToPixel(path[i]);
 		int c = (pixelCoord.first * mapWidth + pixelCoord.second) * 4;
 		image[c] = 0;
 		image[c + 1] = 0;

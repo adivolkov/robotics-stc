@@ -50,6 +50,8 @@ public:
 	Coordinate coarseToPixelCoordinate(Coordinate coarsGridCoord);
 	Coordinate pixelToCoarseCoordinate(Coordinate pixelCoord);
 	Coordinate fineToPixelCoordinate(Coordinate fineGridCoord);
+	RealPosition pixelToRobotPosition(Coordinate pixelCoord);
+	Coordinate robotPositionToPixel(RealPosition realPosition);
 	int getCoarseGridPixelWidth();
 	int getFineGridPixelWidth();
 
