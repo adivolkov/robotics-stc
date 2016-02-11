@@ -2,7 +2,7 @@
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
-# WRITTEN BY # 
+# WRITTEN BY 
 
  *  ALON ABADI   - 201448057
  *  ORON BEN ZVI - 300462124
