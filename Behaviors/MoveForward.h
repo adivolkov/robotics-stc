@@ -20,7 +20,7 @@ public:
 	bool startCond(RealPosition targetWaypoint, double angle){return true;}
 	bool stopCond(RealPosition targetWaypoint, double angle);
 	void action(){_robot->setSpeed(LINEAR_SPEED * _multiplier,0.0);}
-	string name(){cout << "Move Forward:" << endl; return "Move Forward";}
+	string name(){cout << "Move Forward." << endl; return "Move Forward";}
 };
 
 

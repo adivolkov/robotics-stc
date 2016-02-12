@@ -78,8 +78,8 @@ void WaypointManager::printWaypoints(){
 	cout << endl << endl << endl;
 	for (unsigned int i = 0; i < this->waypoints.size()-1; ++i)
 	{
-		cout << i << ": " << "(" << waypoints[i].first << "," << waypoints[i].second << ")" << endl;
-		//cout << "puck( pose [" << waypoints[i].second << " " << waypoints[i].first << " 0 ] color \"red\" )" << endl;
+		//cout << i << ": " << "(" << waypoints[i].first << "," << waypoints[i].second << ")" << endl;
+		cout << "puck( pose [" << waypoints[i].second << " " << waypoints[i].first << " 0 ] color \"red\" )" << endl;
 	}
 }
 

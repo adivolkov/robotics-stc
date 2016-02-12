@@ -11,7 +11,7 @@
 using namespace std;
 
 bool TurnLeft::startCond(RealPosition targetWaypoint, double angle){
-	return (!Helper::isRight(_robot->getYaw(), angle));
+	return (!Helper::isRight(Helper::radiansToDegrees(_robot->getYaw()), angle));
 }
 
 bool TurnLeft::stopCond(RealPosition targetWaypoint, double angle){

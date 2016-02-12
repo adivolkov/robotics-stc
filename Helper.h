@@ -69,10 +69,8 @@ public:
 			difference -= 360;
 
 		if (difference > 0){
-			 cout << "in "<< endl;
 			return true;
 		}
-		 cout << "out "<< endl;
 		return false;
 	}
 };

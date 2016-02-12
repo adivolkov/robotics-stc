@@ -64,14 +64,14 @@ void Manager::run()
 
 		currentWaypoint.first = _robot->getYPos();
 		currentWaypoint.second = _robot->getXPos();
-		cout << "Waypoint number: "<< nextWaypointCounter << endl;
 		if (_currBehavior->name() == "Move Forward") {
 			nextWaypointCounter++;
-			//currentWaypoint = this->_waypoints[nextWaypointCounter];
 			nextWaypoint = this->_waypoints[nextWaypointCounter];
 			angle = Helper::radiansToDegrees(atan2((nextWaypoint.first - currentWaypoint.first),nextWaypoint.second - currentWaypoint.second));
 		}
-		cout << "Next: ";
+		cout << "From (" << nextWaypointCounter << "): ";
+		Helper:: printRealPosition(currentWaypoint);
+		cout << "To   (" << nextWaypointCounter + 1 << "): ";
 		Helper:: printRealPosition(nextWaypoint);
 
 		_currBehavior = _currBehavior->selectNext(nextWaypoint, angle);

@@ -15,6 +15,13 @@
 #include "Helper.h"
 #include <iostream>
 
+/*
+ * WRITTEN BY:
+ *  ALON ABADI   - 201448057
+ *  ORON BEN ZVI - 300462124
+ *  KOBI LEMBERG - 201338217
+ *  ADI VOLKOVITZ - 201323821
+ */
 
 using namespace std;
 

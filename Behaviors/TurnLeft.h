@@ -20,7 +20,7 @@ public:
 	bool stopCond(RealPosition targetWaypoint, double angle);
 	void action(){_robot->setSpeed(0.0,TURN_SPEED * _multiplier);}
 	void pause();
-	string name(){cout << "Turn Left:" << endl; return "TurnLeft";}
+	string name(){cout << "Turn Left." << endl; return "TurnLeft";}
 };
 
 #endif /* TURNLEFT_H_ */
